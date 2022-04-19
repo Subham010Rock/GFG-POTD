@@ -2,7 +2,7 @@
 
 ## Problem No. 1- [K-Ary Tree](https://practice.geeksforgeeks.org/problems/k-ary-tree1235/1)
 Find the number of leaf nodes in a full k-ary tree of height m.<br />
-Note: You have to return the answer module 109+7.
+Note: You have to return the answer module 10^9+7.
 
 Solution- 
 ```
