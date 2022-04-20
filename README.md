@@ -101,4 +101,44 @@ struct Node* partition(struct Node* head, int x) {
 ```
 ###### T.C: O(N), S.C: O(N)
 
+## Problem No. 3-[Theft at World Bank](https://practice.geeksforgeeks.org/problems/theft-at-the-world-bank2156/1#)
+The worlds most successful thief Albert Spaggiari was planning for his next heist on the world bank. He decides to carry a sack with him, which can carry a maximum weight of C kgs. Inside the world bank there were N large blocks of gold. All the blocks have some profit value associated with them i.e. if he steals ith block of weight w[i] then he will have p[i] profit. As blocks were heavy he decided to steal some part of them by cutting them with his cutter.
+The thief does not like symmetry, hence, he wishes to not take blocks or parts of them whose weight is a perfect square. Now, you need to find out the maximum profit that he can earn given that he can only carry blocks of gold in his sack. 
+Note: The answer should be precise upto 3 decimal places.
+
+Solution- 
+
+```
+class Solution{
+	public:
+	static bool sqr(long long n){
+	    if(ceil(sqrt(n))==floor(sqrt(n)))
+	    return true;
+	    else
+	    return false;
+	}
+	long double maximumProfit(int N, long long C, vector<long long> w, vector<long long> p){
+	    // Code here.
+	    long double res=0;
+	    vector<pair<long double,long long>>v;
+	    for(int i=0;i<w.size();i++){
+	        if(!sqr(w[i])){
+	            v.push_back(make_pair(((long double)p[i]/w[i]),w[i]));
+	        }
+	    }
+	    sort(v.rbegin(),v.rend());
+	    for(int i=0;i<v.size();i++){
+	        if(C==0)
+	        return res;
+	        long long m=min(v[i].second,C);
+	        res+=m*v[i].first;
+	        C-=m;
+	    }
+	    return res;
+	}
+};
+```
+
+###### T.C: O(N*logN), S.C: O(N)
+
 
