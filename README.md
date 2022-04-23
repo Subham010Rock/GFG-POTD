@@ -176,3 +176,34 @@ class Solution{
 ```
 
 ###### T.C: O(Log(N)), S.C(O(1))
+
+## Problem No. 5-[Sum of two numbers without using arithmetic operators](https://practice.geeksforgeeks.org/problems/sum-of-two-numbers-without-using-arithmetic-operators/1)
+Given two integers a and b. Find the sum of two numbers without using arithmetic operators.
+
+Solution-
+
+```
+int Add(int x, int y)
+{
+    // Iterate till there is no carry
+    while (y != 0)
+    {
+        // carry should be unsigned to
+        // deal with -ve numbers
+        // carry now contains common
+        //set bits of x and y
+        unsigned carry = x & y;
+ 
+        // Sum of bits of x and y where at
+        //least one of the bits is not set
+        x = x ^ y;
+ 
+        // Carry is shifted by one so that adding
+        // it to x gives the required sum
+        y = carry << 1;
+    }
+    return x;
+}
+```
+###### // This code is contributed by rathbhupendra.
+###### T.C:O(Log(y)), S.C:(O(1))
