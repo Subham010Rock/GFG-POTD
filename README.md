@@ -141,4 +141,38 @@ class Solution{
 
 ###### T.C: O(N*logN), S.C: O(N)
 
+## Problem No. 4-[Search insert position of K in a sorted array](https://practice.geeksforgeeks.org/problems/search-insert-position-of-k-in-a-sorted-array/1#)
+Given a sorted array Arr[](0-index based) consisting of N distinct integers and an integer k, the task is to find the index of k, if it’s present in the array Arr[]. Otherwise, find the index where k must be inserted to keep the array sorted.
 
+Solution-
+
+```
+class Solution{
+    public:
+    int searchInsertK(vector<int>Arr, int N, int k)
+    {
+        // code here
+        int low=0;
+        int high=N-1;
+        int mid;
+        while(low<=high){
+            mid=(low+high)/2;
+            if(Arr[mid]==k)
+            return mid;
+            else if(Arr[mid]>k){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        if(Arr[mid]>k){
+            return mid;
+        }
+        else
+        return mid+1;
+    }
+};
+```
+
+###### T.C: O(Log(N)), S.C(O(1))
