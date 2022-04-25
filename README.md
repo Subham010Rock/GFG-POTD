@@ -207,3 +207,31 @@ int Add(int x, int y)
 ```
 ###### // This code is contributed by rathbhupendra.
 ###### T.C:O(Log(y)), S.C:(O(1))
+
+## Problem No. 6-[Product of Primes](https://practice.geeksforgeeks.org/problems/product-of-primes5328/1)
+Given two numbers L and R (inclusive) find the product of primes within this range. Print the product modulo 109+7. If there are no primes in that range you must print 1.
+
+Solution- 
+
+```
+class Solution{
+public:
+    bool prime_check(long long n){
+
+        for(int i=2;i*i<=n;i++){
+            if(n%i==0)
+            return 0;
+        }
+        return 1;
+    }
+    long long primeProduct(long long L, long long R){
+        // code here
+        long long res=1;
+        for(long long i=L;i<=R;i++){
+            if(prime_check(i))
+            res=(res*i)%1000000007;
+        }
+        return res;
+    }
+};
+```
