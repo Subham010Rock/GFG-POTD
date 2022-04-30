@@ -410,3 +410,34 @@ class Solution:
             res.append(len(set(str[i-1:j])))
         return res
 ```
+
+## Problem No. 11-[Super Primes](https://practice.geeksforgeeks.org/problems/super-primes2443/1#)
+A prime number is Super Prime if it is a sum of two primes. Find all the Super Primes upto N
+
+Solution-
+```
+class Solution{
+public:	
+	int superPrimes(int n)
+	{
+	    // Your code goes here
+	    vector<int>v(n+1,1);
+	    for(int i=2;i<=sqrt(n);i++){
+	        if(v[i]==1){
+	            for(int j=i*i;j<=n;j+=i){
+	                v[j]=0;
+	            }
+	        }
+	    }
+	    int c=0;
+	    for(int i=5;i<=n;i+=2){
+	        if(v[i]==1){
+	        if(v[i-2]==1)
+	        c++;}
+	    }
+	    return c;
+	}
+};
+```
+
+###### T.C: O(NLog(LogN)), S.C: O(N)
