@@ -396,3 +396,17 @@ int countNodesinLoop(struct Node *head)
 }
 
 ```
+
+## Problem No. 10-[Queries on Strings](https://practice.geeksforgeeks.org/problems/queries-on-strings5636/1)
+Given a string str you have to answer several queries on that string. In each query you will be provided two values L and R and you have to find the number of distinct characters in the sub string from index L to index R (inclusive) of the original string.
+
+Solution-
+```
+class Solution:
+    def SolveQueris(self, str, Query):
+        # Code here
+        res=[]
+        for i,j in Query:
+            res.append(len(set(str[i-1:j])))
+        return res
+```
