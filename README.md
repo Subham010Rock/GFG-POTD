@@ -441,3 +441,43 @@ public:
 ```
 
 ###### T.C: O(NLog(LogN)), S.C: O(N)
+
+## Problem No. 12-[Hungry Pizza Lovers](https://practice.geeksforgeeks.org/problems/hungry-pizza-lovers3148/1#)
+Dominos Pizza has hungry customers waiting in the queue. Each unique order is placed by a customer at time x[i], and the order takes y[i] units of time to complete.
+You have information on all n orders, Find the order in which all customers will receive their pizza and return it. If two or more orders are completed at the same time then sort them by non-decreasing order number.
+
+Solution-
+
+```
+#User function Template for python3
+
+class Solution:
+    def permute(self,arr,n):
+        l=[(arr[i][0]+arr[i][1],i+1) for i in range(n)]
+        l=sorted(l,key=lambda x:x[0])
+        res=[j for i,j in l ]
+        return res
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+    
+for _ in range(0,int(input())):
+    n = int(input())
+    arr = []
+    for _ in range(0, n):
+        ll = list(map(int, input().strip().split()))
+        arr.append(ll)
+    obj=Solution()
+    ans = obj.permute(arr, n)
+    for i in ans:
+        print(i)
+    
+
+
+
+# } Driver Code Ends
+```
+###### T.C: O(NLogN), S.C: O(N)
