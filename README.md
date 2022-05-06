@@ -481,3 +481,37 @@ for _ in range(0,int(input())):
 # } Driver Code Ends
 ```
 ###### T.C: O(NLogN), S.C: O(N)
+
+## Problem No. 13-[Partition a number into two divisible parts](https://practice.geeksforgeeks.org/problems/partition-a-number-into-two-divisible-parts3605/1)
+Given a number (as string) and two integers a and b, divide the string in two non-empty parts such that the first part is divisible by a and the second part is divisible by b. In case multiple answers exist, return the string such that the first non-empty part has minimum length.
+
+Solution-
+```
+#User function Template for python3
+class Solution:
+    def stringPartition(ob,S,a,b):
+        # Code here
+        for i in range(len(S)-1):
+            if(int(S[0:i+1])%a==0 and int(S[i+1:])%b==0):
+                return S[0:i+1]+" "+S[i+1:]
+        return -1
+        
+                
+        
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        
+        S,a,b=map(str,input().strip().split(" "))
+        a=int(a)
+        b=int(b)
+        ob = Solution()
+        print(ob.stringPartition(S,a,b))
+# } Driver Code Ends
+```
+
