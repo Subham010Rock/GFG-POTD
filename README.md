@@ -613,3 +613,42 @@ Node* sortedMerge(Node* head1, Node* head2)
     
 }
 ```
+
+## Problem No. 15-[Nth item through sum](https://practice.geeksforgeeks.org/problems/nth-item-through-sum3544/1#)
+Given two sorted arrays A and B of length L1 and L2, we can get a set of sums(add one element from the first and one from second). Find the Nth element in the set considered in sorted order.<br/>
+**Note:** Set of sums should have unique elements.
+
+Solution-
+
+```
+#User function Template for python3
+
+class Solution:
+    def nthItem(self, L1, L2, A, B, N):
+        # code here
+        d={A[i]+B[j]:1 for i in range(L1) for j in range(L2)}
+        if N>len(d):
+            return -1
+        else:
+            return sorted(d.items(), key=lambda x:x[0])[N-1][0]
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        L1, L2 = [int(x) for x in input().split()]
+        A = input().split()
+        for itr in range(L1):
+            A[itr] = int(A[itr])
+        B = input().split()
+        for it in range(L2):
+            B[it] = int(B[it])
+        N = int(input())
+        
+        ob = Solution()
+        print(ob.nthItem(L1, L2, A, B, N))
+# } Driver Code Ends
+```
