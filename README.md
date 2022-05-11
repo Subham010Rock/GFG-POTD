@@ -652,3 +652,32 @@ if __name__ == '__main__':
         print(ob.nthItem(L1, L2, A, B, N))
 # } Driver Code Ends
 ```
+
+## Problem No. 16-[Largest number with given sum](https://practice.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1/#)
+Geek lost the password of his super locker. He remembers the number of digits N as well as the sum S of all the digits of his password. He know that his password is the largest number of N digits that can be made with given sum S. As he is busy doing his homework, help him retrieving his password.
+
+Solution-
+```
+#User function Template for python3
+
+class Solution:
+    #Function to return the largest possible number of n digits
+    #with sum equal to given sum.
+    def largestNum(self,n,s):
+        
+        # code here
+        no_ofnine=s//9
+        if no_ofnine+min(1,s%9)>n:
+            return -1
+        else:
+            return no_ofnine*"9"+min(1,s%9)*str(s%9)+(n-no_ofnine-min(1,s%9))*"0"
+            
+    
+    
+if __name__ == '__main__':
+    test_cases = int(input())
+    for cases in range(test_cases) :
+        n,s = map(int,input().strip().split())
+        ob = Solution()
+        print(ob.largestNum(n,s))
+```
