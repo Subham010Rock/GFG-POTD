@@ -681,3 +681,77 @@ if __name__ == '__main__':
         ob = Solution()
         print(ob.largestNum(n,s))
 ```
+
+## Problem No. 17-[Unique Subsets](https://practice.geeksforgeeks.org/problems/subsets-1587115621/1#)
+Given an array arr[] of integers of size N that might contain duplicates, the task is to find all possible unique subsets.<br/>
+Note: Each subset should be sorted.
+
+Solution-
+```
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution
+{
+    public:
+    //Function to find all possible unique subsets.
+    vector<vector<int> > AllSubsets(vector<int> arr, int n)
+    {
+        // code here 
+         set<vector<int>>s;
+        vector<vector<int>>res={};
+        unsigned int set_size=pow(2,n);
+	    for(int i=0;i<set_size;i++){
+	        vector<int>a;
+	    for(int j=0;j<n;j++){
+	        if(i & (1<<j))
+	        a.push_back(arr[j]);
+	    }
+	    sort(a.begin(),a.end());
+	    s.insert(a);
+	  }
+	  for(std::set<vector<int>>::iterator it=s.begin();it!=s.end();it++){
+	      res.push_back(*it);
+	  }
+	  //sort(res.begin(),res.end());
+	  return res;
+    }
+};
+
+// { Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        vector<int> A;
+        int x;
+        for(int i=0;i<n;i++){
+            cin>>x;
+            A.push_back(x);
+        }
+        Solution obj;
+        vector<vector<int> > result = obj.AllSubsets(A,n);
+        // printing the output
+        for(int i=0;i<result.size();i++){
+            cout<<'(';
+            for(int j=0;j<result[i].size();j++){
+                cout<<result[i][j];
+                if(j<result[i].size()-1)
+                    cout<<" ";
+            }
+            cout<<")";
+        }
+        cout<<"\n";
+    }
+}   
+
+
+  // } Driver Code Ends
+  ```
+  
