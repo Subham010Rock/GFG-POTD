@@ -755,3 +755,43 @@ int main(){
   // } Driver Code Ends
   ```
   
+## Problem N0. 18-[Longest subarray with sum divisible by K](https://practice.geeksforgeeks.org/problems/longest-subarray-with-sum-divisible-by-k1259/1#)
+Given an array containing N integers and a positive integer K, find the length of the longest sub array with sum of the elements divisible by the given value K.
+
+Solution--
+```
+#User function Template for python3
+class Solution:
+    def longSubarrWthSumDivByK (self,arr,  n, K) : 
+        #Complete the function
+        d={}
+        s=0
+        index=0
+        for ind,i in enumerate(arr):
+            s+=i
+            r=s%K
+            if r==0:
+                index=ind+1
+            elif r in d:
+                index=max(index,ind-d[r])
+            else:
+                d[r]=ind
+        return index
+
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+
+    for _ in range(0,int(input())):
+        n, K = map(int ,input().split())
+        arr = list(map(int,input().strip().split()))
+        ob = Solution()
+        res = ob.longSubarrWthSumDivByK(arr, n, K)
+        print(res)
+
+# } Driver Code Ends
+```
