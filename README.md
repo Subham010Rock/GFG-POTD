@@ -755,7 +755,7 @@ int main(){
   // } Driver Code Ends
   ```
   
-## Problem N0. 18-[Longest subarray with sum divisible by K](https://practice.geeksforgeeks.org/problems/longest-subarray-with-sum-divisible-by-k1259/1#)
+## Problem No. 18-[Longest subarray with sum divisible by K](https://practice.geeksforgeeks.org/problems/longest-subarray-with-sum-divisible-by-k1259/1#)
 Given an array containing N integers and a positive integer K, find the length of the longest sub array with sum of the elements divisible by the given value K.
 
 Solution--
@@ -794,4 +794,59 @@ if __name__ == '__main__':
         print(res)
 
 # } Driver Code Ends
+```
+## Problem No. 19-[Minimum Number in a sorted rotated array](https://practice.geeksforgeeks.org/problems/minimum-number-in-a-sorted-rotated-array-1587115620/1#)
+Given an array of distinct elements which was initially sorted. This array is rotated at some unknown point. The task is to find the minimum element in the given sorted and rotated array.
+
+Solution--
+```
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+class Solution
+{
+    public:
+    //Function to find the minimum element in sorted and rotated array.
+    int minNumber(int arr[], int low, int high)
+    {
+        // Your code here
+        int mid;
+        while(low<=high){
+            mid=low+(high-low)/2;
+                if(arr[mid]>=arr[high])
+                low=mid+1;
+                else
+                high=mid;
+        }
+        return arr[mid];
+         
+        
+    }
+};
+
+// { Driver Code Starts.
+
+
+int main()
+{
+	
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int a[n];
+		for(int i=0;i<n;++i)
+			cin>>a[i];	
+		Solution obj;
+		cout << obj.minNumber(a,0,n-1) << endl;
+	}
+	return 0;
+}  // } Driver Code Ends
 ```
