@@ -900,3 +900,56 @@ int  main(){
 }
   // } Driver Code Ends
   ```
+
+## Problem No. 21-[Transform String](https://practice.geeksforgeeks.org/problems/transform-string5648/1)
+Given two strings A and B. Find the minimum number of steps required to transform string A into string B. The only allowed operation for the transformation is selecting a character from string A and inserting it in the beginning of string A.
+
+Solution--
+```
+#Back-end complete function Template for Python 3
+
+class Solution:
+    def transform(self, A, B): 
+        #code here.
+        if(len(A)!=len(B)):
+            return -1
+        da={}
+        db={}
+        res=0
+        for i in A:
+            da[i]=da.get(i,0)+1
+        for i in B:
+            db[i]=db.get(i,0)+1
+        for i in A:
+            if(da[i]!=db.get(i,0)):
+                return -1
+        j=len(B)-1
+        i=len(A)-1
+        while i>=0:
+            #print(i,j)
+            if(A[i]!=B[j]):
+                while( i>=0 and A[i]!=B[j]):
+                    res+=1
+                    i-=1
+                j-=1
+                i-=1
+            else:
+                j-=1
+                i-=1
+        return res
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int(input())
+    for _ in range(t):
+        line = input().strip().split()
+        A = line[0]
+        B = line[1]
+        ob = Solution()
+        print(ob.transform(A,B))
+# } Driver Code Ends
+```
