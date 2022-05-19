@@ -796,3 +796,161 @@ if __name__ == '__main__':
 # } Driver Code Ends
 ```
 
+## Problem No. 19-[Minimum Number in a sorted rotated array](https://practice.geeksforgeeks.org/problems/minimum-number-in-a-sorted-rotated-array-1587115620/1#)
+Given an array of distinct elements which was initially sorted. This array is rotated at some unknown point. The task is to find the minimum element in the given sorted and rotated array.
+
+Solution--
+```
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+class Solution
+{
+    public:
+    //Function to find the minimum element in sorted and rotated array.
+    int minNumber(int arr[], int low, int high)
+    {
+        // Your code here
+        int mid;
+        while(low<=high){
+            mid=low+(high-low)/2;
+                if(arr[mid]>=arr[high])
+                low=mid+1;
+                else
+                high=mid;
+        }
+        return arr[mid];
+         
+        
+    }
+};
+
+// { Driver Code Starts.
+
+
+int main()
+{
+	
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int a[n];
+		for(int i=0;i<n;++i)
+			cin>>a[i];	
+		Solution obj;
+		cout << obj.minNumber(a,0,n-1) << endl;
+	}
+	return 0;
+}  // } Driver Code Ends
+```
+## Problem No. 20-[Permutation with Spaces](https://practice.geeksforgeeks.org/problems/permutation-with-spaces3627/1)
+Given a string you need to print all possible strings that can be made by placing spaces (zero or one) in between them. The output should be printed in sorted increasing order of strings.
+
+Solution-
+```
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution{
+public:
+    void powerset(string S,string curr,vector<string>&res,int i){
+        if(i==S.length()){
+            res.push_back(curr);
+            return;
+        }
+        if(i!=0)
+        powerset(S,curr+" "+S[i],res,i+1);
+        powerset(S,curr+S[i],res,i+1);
+    }
+
+    vector<string> permutation(string S){
+        // Code Here
+        vector<string>res;
+        powerset(S,"",res,0);
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+
+int  main(){
+    int t;
+    cin>>t;
+    while(t--){
+        string S;
+        cin>>S;
+        vector<string> ans;
+        Solution obj;
+        ans = obj.permutation(S);
+        for(int i=0;i<ans.size();i++){
+            cout<<"("<<ans[i]<<")";
+        }
+        cout << endl;
+    }
+}
+  // } Driver Code Ends
+  ```
+
+## Problem No. 21-[Transform String](https://practice.geeksforgeeks.org/problems/transform-string5648/1)
+Given two strings A and B. Find the minimum number of steps required to transform string A into string B. The only allowed operation for the transformation is selecting a character from string A and inserting it in the beginning of string A.
+
+Solution--
+```
+#Back-end complete function Template for Python 3
+
+class Solution:
+    def transform(self, A, B): 
+        #code here.
+        if(len(A)!=len(B)):
+            return -1
+        da={}
+        db={}
+        res=0
+        for i in A:
+            da[i]=da.get(i,0)+1
+        for i in B:
+            db[i]=db.get(i,0)+1
+        for i in A:
+            if(da[i]!=db.get(i,0)):
+                return -1
+        j=len(B)-1
+        i=len(A)-1
+        while i>=0:
+            #print(i,j)
+            if(A[i]!=B[j]):
+                while( i>=0 and A[i]!=B[j]):
+                    res+=1
+                    i-=1
+                j-=1
+                i-=1
+            else:
+                j-=1
+                i-=1
+        return res
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int(input())
+    for _ in range(t):
+        line = input().strip().split()
+        A = line[0]
+        B = line[1]
+        ob = Solution()
+        print(ob.transform(A,B))
+# } Driver Code Ends
+```
