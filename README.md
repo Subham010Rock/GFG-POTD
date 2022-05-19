@@ -850,3 +850,53 @@ int main()
 	return 0;
 }  // } Driver Code Ends
 ```
+## Problem No. 20-[Permutation with Spaces](https://practice.geeksforgeeks.org/problems/permutation-with-spaces3627/1)
+Given a string you need to print all possible strings that can be made by placing spaces (zero or one) in between them. The output should be printed in sorted increasing order of strings.
+
+Solution-
+```
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution{
+public:
+    void powerset(string S,string curr,vector<string>&res,int i){
+        if(i==S.length()){
+            res.push_back(curr);
+            return;
+        }
+        if(i!=0)
+        powerset(S,curr+" "+S[i],res,i+1);
+        powerset(S,curr+S[i],res,i+1);
+    }
+
+    vector<string> permutation(string S){
+        // Code Here
+        vector<string>res;
+        powerset(S,"",res,0);
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+
+int  main(){
+    int t;
+    cin>>t;
+    while(t--){
+        string S;
+        cin>>S;
+        vector<string> ans;
+        Solution obj;
+        ans = obj.permutation(S);
+        for(int i=0;i<ans.size();i++){
+            cout<<"("<<ans[i]<<")";
+        }
+        cout << endl;
+    }
+}
+  // } Driver Code Ends
+  ```
