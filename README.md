@@ -953,3 +953,40 @@ if __name__ == '__main__':
         print(ob.transform(A,B))
 # } Driver Code Ends
 ```
+
+## Problem No. 22-[A Special Keyboard](https://practice.geeksforgeeks.org/problems/228d0aa9f26db93ee5b2cb3583dbd4b197447e16/1)
+Imagine you have a special keyboard with all keys in a single row. The layout of characters on a keyboard is denoted by a string S1 of length 26. S1 is indexed from 0 to 25. Initially, your finger is at index 0.<br/>
+To type a character, you have to move your finger to the index of the desired character. The time taken to move your finger from index i to index j is |j-i|, where || denotes absolute value.Find the time taken to type the string S2 with the given keyboard layout.
+
+Solution-
+```
+#User function Template for python3
+
+class Solution:
+    def findTime(self, S1, S2):
+        # code here 
+        d={}
+        for i in range(len(S1)):
+            d[S1[i]]=i
+        time_taken=d[S2[0]]
+        last_visit=S2[0]
+        for i in S2[1:]:
+            time_taken+=(abs(d[i]-d[last_visit]))
+            last_visit=i
+        return time_taken
+            
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        S1=input()
+        S2=input()
+        
+        ob = Solution()
+        print(ob.findTime(S1,S2))
+# } Driver Code Ends
+```
