@@ -990,3 +990,65 @@ if __name__ == '__main__':
         print(ob.findTime(S1,S2))
 # } Driver Code Ends
 ```
+## Problem No. 23-[Farthest number](https://practice.geeksforgeeks.org/problems/1a31d09f7b8e9c0633339df07858deb3a728fe19/1#)
+Given an array Arr[] of size N. For every element in the array, the task is to find the index of the farthest element in the array to the right which is smaller than the current element. If no such number exists then print -1.<br/>
+Note: 0 based indexing.
+
+Solution-
+```
+// { Driver Code Starts
+//Initial Template for C++
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function Template for C++
+class Solution{   
+  public:
+    int b_search(vector<int>&a,int t,int l,int h){
+        int ind=-1;
+        while(l<=h){
+            if(a[h]<t){
+                return h;
+            }
+            else{
+                if(a[l]<t){
+                    ind=l;
+                }
+                h--;
+                l++;
+            }
+        }
+        return ind;
+    }
+    vector<int> farNumber(int N,vector<int> Arr){
+        //code here
+        vector<int>res(N,-1);
+        //sort(res.begin();res.end());
+        for(int i=0;i<N-1;i++){
+                res[i]=b_search(Arr,Arr[i],i+1,N-1);
+        }
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+signed main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int N;
+        cin>>N;
+        vector<int> Arr(N);
+        for(int i=0;i<N;i++)
+            cin>>Arr[i];
+        Solution obj;
+        vector<int> answer=obj.farNumber(N,Arr);
+        for(auto i:answer)
+            cout<<i<<" ";
+        cout<<endl;
+  }
+}  // } Driver Code Ends
+```
