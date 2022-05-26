@@ -1052,3 +1052,44 @@ signed main()
   }
 }  // } Driver Code Ends
 ```
+
+## Problem No. 24-[Find an Replace in String](https://practice.geeksforgeeks.org/problems/find-an-replace-in-string/1)
+Given a string S on which you need to perform Q replace operations.<br/>
+Each replacement operation has 3 parameters: a starting index i, a source word x and a target word y. The rule is that if x starts at position i in the original string S, then we will replace that occurrence of x with y. If not, we do nothing.<br/>
+Note: All these operations occur simultaneously. It's guaranteed that there won't be any overlap in replacement: for example, S = "abc", indexes = [0,1], sources = ["ab", "bc"] is not a valid test case.<br/>
+
+Solution-
+```
+#User function Template for python3
+
+class Solution:
+    def findAndReplace(self, S, Q, index, sources, targets):
+        # code here 
+        l=[]
+        ind=0
+        for i in range(Q):
+            l.append(S[ind:index[i]])
+            ind+=(index[i]-ind)
+            if(S[index[i]:index[i]+len(sources[i])]==sources[i]):
+                l.append(targets[i])
+                ind+=len(sources[i])
+        if ind<len(S):
+            l.append(S[ind:])
+        return "".join(l)
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        S=input()
+        Q=int(input())
+        index=list(map(int,input().split()))
+        sources=list(map(str,input().split()))
+        targets=list(map(str,input().split()))
+        
+        ob = Solution()
+        print(ob.findAndReplace(S,Q,index,sources,targets))
+# } Driver Code Ends
