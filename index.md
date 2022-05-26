@@ -954,3 +954,234 @@ if __name__ == '__main__':
         print(ob.transform(A,B))
 # } Driver Code Ends
 ```
+## Problem No. 22-[A Special Keyboard](https://practice.geeksforgeeks.org/problems/228d0aa9f26db93ee5b2cb3583dbd4b197447e16/1)
+Imagine you have a special keyboard with all keys in a single row. The layout of characters on a keyboard is denoted by a string S1 of length 26. S1 is indexed from 0 to 25. Initially, your finger is at index 0.<br/>
+To type a character, you have to move your finger to the index of the desired character. The time taken to move your finger from index i to index j is |j-i|, where || denotes absolute value.Find the time taken to type the string S2 with the given keyboard layout.
+
+Solution-
+```
+#User function Template for python3
+
+class Solution:
+    def findTime(self, S1, S2):
+        # code here 
+        d={}
+        for i in range(len(S1)):
+            d[S1[i]]=i
+        time_taken=d[S2[0]]
+        last_visit=S2[0]
+        for i in S2[1:]:
+            time_taken+=(abs(d[i]-d[last_visit]))
+            last_visit=i
+        return time_taken
+            
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        S1=input()
+        S2=input()
+        
+        ob = Solution()
+        print(ob.findTime(S1,S2))
+# } Driver Code Ends
+```
+## Problem No. 23-[Farthest number](https://practice.geeksforgeeks.org/problems/1a31d09f7b8e9c0633339df07858deb3a728fe19/1#)
+Given an array Arr[] of size N. For every element in the array, the task is to find the index of the farthest element in the array to the right which is smaller than the current element. If no such number exists then print -1.<br/>
+Note: 0 based indexing.
+
+Solution-
+```
+// { Driver Code Starts
+//Initial Template for C++
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function Template for C++
+class Solution{   
+  public:
+    int b_search(vector<int>&a,int t,int l,int h){
+        int ind=-1;
+        while(l<=h){
+            if(a[h]<t){
+                return h;
+            }
+            else{
+                if(a[l]<t){
+                    ind=l;
+                }
+                h--;
+                l++;
+            }
+        }
+        return ind;
+    }
+    vector<int> farNumber(int N,vector<int> Arr){
+        //code here
+        vector<int>res(N,-1);
+        //sort(res.begin();res.end());
+        for(int i=0;i<N-1;i++){
+                res[i]=b_search(Arr,Arr[i],i+1,N-1);
+        }
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+signed main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int N;
+        cin>>N;
+        vector<int> Arr(N);
+        for(int i=0;i<N;i++)
+            cin>>Arr[i];
+        Solution obj;
+        vector<int> answer=obj.farNumber(N,Arr);
+        for(auto i:answer)
+            cout<<i<<" ";
+        cout<<endl;
+  }
+}  // } Driver Code Ends
+```
+
+## Problem No. 24-[Find an Replace in String](https://practice.geeksforgeeks.org/problems/find-an-replace-in-string/1)
+Given a string S on which you need to perform Q replace operations.<br/>
+Each replacement operation has 3 parameters: a starting index i, a source word x and a target word y. The rule is that if x starts at position i in the original string S, then we will replace that occurrence of x with y. If not, we do nothing.<br/>
+Note: All these operations occur simultaneously. It's guaranteed that there won't be any overlap in replacement: for example, S = "abc", indexes = [0,1], sources = ["ab", "bc"] is not a valid test case.<br/>
+
+Solution-
+```
+#User function Template for python3
+
+class Solution:
+    def findAndReplace(self, S, Q, index, sources, targets):
+        # code here 
+        l=[]
+        ind=0
+        for i in range(Q):
+            l.append(S[ind:index[i]])
+            ind+=(index[i]-ind)
+            if(S[index[i]:index[i]+len(sources[i])]==sources[i]):
+                l.append(targets[i])
+                ind+=len(sources[i])
+        if ind<len(S):
+            l.append(S[ind:])
+        return "".join(l)
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        S=input()
+        Q=int(input())
+        index=list(map(int,input().split()))
+        sources=list(map(str,input().split()))
+        targets=list(map(str,input().split()))
+        
+        ob = Solution()
+        print(ob.findAndReplace(S,Q,index,sources,targets))
+# } Driver Code Ends
+```
+## Problem No. 25-[Even and Odd](https://practice.geeksforgeeks.org/problems/even-and-odd/1#)
+Given an array arr[] of size N containing equal number of odd and even numbers. Arrange the numbers in such a way that all the even numbers get the even index and odd numbers get the odd index.<br/>
+Note: There are multiple possible solutions, Print any one of them. Also, 0-based indexing is considered.
+
+Solution-
+```
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution {
+  public:
+    void reArrange(int arr[], int N) {
+        // code here
+        int e=0;
+        int o=1;
+        while(e<N){
+            if(arr[e]%2!=0){
+                while(o<N){
+                    if(arr[o]%2==0){
+                        swap(arr[o],arr[e]);
+                        break;
+                    }
+                    else{
+                        o+=2;
+                    }
+                }
+            }
+            e+=2;
+        }
+    }
+};
+
+// { Driver Code Starts.
+
+int check(int arr[], int n)
+{
+    int flag = 1;
+    int c=0, d=0;
+    for(int i=0; i<n; i++)
+    {
+        if(i%2==0)
+        {
+            if(arr[i]%2)
+            {
+                flag = 0;
+                break;
+            }
+            else
+                c++;
+        }
+        else
+        {
+            if(arr[i]%2==0)
+            {
+                flag = 0;
+                break;
+            }
+            else
+                d++;
+        }
+    }
+    if(c!=d)
+        flag = 0;
+        
+    return flag;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        cin>>N;
+        
+        int arr[N];
+        for(int i=0; i<N; i++)
+            cin>>arr[i];
+
+        Solution ob;
+        ob.reArrange(arr,N);
+        
+        cout<<check(arr,N)<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends
+```
