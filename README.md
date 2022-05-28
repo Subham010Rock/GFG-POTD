@@ -1185,3 +1185,48 @@ int main() {
     return 0;
 }  // } Driver Code Ends
 ```
+
+## Problem No. 26-[Shortest Path between Cities](https://practice.geeksforgeeks.org/problems/shortest-path-between-cities/1#)
+Geek lives in a special city where houses are arranged in a hierarchial manner. Starting from house number 1, each house leads to two more houses.<br/>
+1 leads to 2 and 3. <br/>
+2 leads to 4 and 5. <br/>
+3 leads to 6 and 7. and so on. <br/>
+Given the house numbers on two houses x and y, find the length of the shortest path between them. 
+
+Solution-
+```
+#User function Template for python3
+
+class Solution:
+    def shortestPath(self, x, y): 
+        # code here
+        d={}
+        if(x==y):
+            return 0
+        m=max(x,y)
+        n=min(x,y)
+        c=0
+        while(m!=1):
+            c+=1
+            m=m//2
+            d[m]=c
+        r=0
+        while(1):
+            if n in d:
+                return r+d[n]
+            else:
+                n=n//2
+                r+=1
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int(input())
+    for _ in range(t):
+        x,y = map(int,input().strip().split())
+        ob = Solution()
+        print(ob.shortestPath(x,y))
+# } Driver Code Ends
+```
