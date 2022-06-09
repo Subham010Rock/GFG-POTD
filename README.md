@@ -1230,7 +1230,7 @@ if __name__ == '__main__':
         print(ob.shortestPath(x,y))
 # } Driver Code Ends
 ```
-## Problem No. 17-[Nearly sorted](https://practice.geeksforgeeks.org/problems/nearly-sorted-1587115620/1)
+## Problem No. 27-[Nearly sorted](https://practice.geeksforgeeks.org/problems/nearly-sorted-1587115620/1)
 Given an array of n elements, where each element is at most k away from its target position, you need to sort the array optimally.
 
 Solution--
