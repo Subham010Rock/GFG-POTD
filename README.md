@@ -1288,3 +1288,63 @@ int main()
 }
   // } Driver Code Ends
  ```
+
+## Problem No. 28-[Help a Thief!!!](https://practice.geeksforgeeks.org/problems/help-a-thief5938/1#)
+You have to help a thief to steal as many as GoldCoins as possible from a GoldMine. There he saw N Gold Boxes an each Gold Boxes consists of Ai Plates each plates consists of Bi Gold Coins. Your task is to print the maximum gold coins theif can steal if he can take a maximum of T plates.
+
+Solution--
+```
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution {
+  public:
+    int maxCoins(int A[], int B[], int T, int N) {
+        // code here
+        vector<pair<int,int>>B_A;
+        for(int i=0;i<N;i++){
+            B_A.push_back(make_pair(B[i],A[i]));
+        }
+        sort(B_A.rbegin(),B_A.rend());
+        int res=0;
+        for(int i=0;i<N;i++){
+            if(T>=B_A[i].second){
+                res+=B_A[i].first*B_A[i].second;
+                T-=B_A[i].second;
+            }
+            else{
+                res+=T*B_A[i].first;
+                break;
+            }
+        }
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int T,N;
+        cin>>T>>N;
+        
+        int A[N], B[N];
+        
+        for(int i=0; i<N; i++)
+            cin>>A[i];
+        for(int i=0; i<N; i++)
+            cin>>B[i];
+
+        Solution ob;
+        cout << ob.maxCoins(A,B,T,N) << endl;
+    }
+    return 0;
+}  // } Driver Code Ends
+```
