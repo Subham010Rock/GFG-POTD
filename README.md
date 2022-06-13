@@ -1348,3 +1348,36 @@ int main() {
     return 0;
 }  // } Driver Code Ends
 ```
+
+## Problem No.29-[String formation from substring](https://practice.geeksforgeeks.org/problems/string-formation-from-substring2734/1#)
+Given a string s, the task is to check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
+
+Solution-
+```
+#User function Template for python3
+class Solution:
+    def isRepeat(self, s):
+        # code here
+        n=len(s)
+        for ind in range(n-1):
+            if s[0:ind+1]*(n//(ind+1))==s:
+                return 1
+        return 0
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+    T=int(input())
+    for i in range(T):
+        s = input()
+        
+        ob = Solution()    
+        answer = ob.isRepeat(s)
+        
+        print(answer)
+
+
+# } Driver Code Ends
+```
