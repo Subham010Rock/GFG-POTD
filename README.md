@@ -1381,3 +1381,58 @@ if __name__ == '__main__':
 
 # } Driver Code Ends
 ```
+
+## Problem No.30- [Ishaan Loves Chocolates](https://practice.geeksforgeeks.org/problems/ishaan-loves-chocolates2156/1)
+As we know, Ishaan has a love for chocolates. He has bought a huge chocolate bar that contains N chocolate squares. Each of the squares has a tastiness level which is denoted by an array A[].<br/>
+Ishaan can eat the first or the last square of the chocolate at once. Ishaan has a sister who loves chocolates too and she demands the last chocolate square. Now, Ishaan being greedy eats the more tasty square first.<br/>
+Determine the tastiness level of the square which his sister gets.
+
+Solution--
+```
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int chocolates(int arr[], int n);
+
+
+int main()
+{
+    
+    int t;cin>> t;
+    while(t--)
+    {
+        int n;
+        cin >> n;
+        int arr[n];
+        
+        for(int i=0;i<n;i++)
+            cin>>arr[i];
+        
+        
+        cout << chocolates(arr, n);
+        cout << endl;
+        
+    }
+
+}
+// } Driver Code Ends
+
+
+int chocolates(int arr[], int n)
+{
+    // Complete the function
+    //return *min_element(arr,arr+n);
+    int i=0;
+    int j=n-1;
+    while(i<j){
+        if(arr[i]>arr[j])
+        i++;
+        else
+        j--;
+    }
+    return arr[i];
+    
+}
+```
