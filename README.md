@@ -1436,3 +1436,135 @@ int chocolates(int arr[], int n)
     
 }
 ```
+
+## Problem No.31- [Reverse a sublist of a linked list](https://practice.geeksforgeeks.org/problems/reverse-a-sublist-of-a-linked-list/1#)
+Given a linked list and positions m and n. Reverse the linked list from position m to n.
+
+Solution--
+```
+// { Driver Code Starts
+//Initial Template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+/* Link list node */
+struct Node {
+	int data;
+	struct Node *next;
+	Node(int x) {
+		data = x;
+		next = NULL;
+	}
+};
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+/*Link list node 
+struct Node {
+	int data;
+	struct Node *next;
+	Node(int x) {
+		data = x;
+		next = NULL;
+	}
+};*/
+
+class Solution
+{
+    public:
+    Node* reverse(Node* start,Node* end,Node*back){       //Reverse Sublist
+        if(start==end)
+        return start;
+        Node* temp=reverse(start->next,end,back);
+        start->next->next=start;
+        start->next=back;
+        return temp;
+    }
+    Node* reverseBetween(Node* head, int m, int n)
+    {
+        //code here
+        if(m==n)
+        return head;
+        Node* start,*end,*iter=head,*front=NULL,*back=NULL;
+        int c=1;
+        while(c!=n){
+            if(c==m)
+            start=iter;
+            if(c<m)
+            front=iter;
+            c++;
+            iter=iter->next;
+        }
+        end=iter;
+        if(end!=NULL)
+        back=end->next;
+        Node*reverse_head=reverse(start,end,back);
+        if(front!=NULL)
+        front->next=reverse_head;
+        else
+        head=reverse_head;
+        return head;
+        
+    }
+};
+
+// { Driver Code Starts.
+
+/* Function to print linked list */
+void printList(struct Node *head)
+{
+	struct Node *temp = head;
+	while (temp != NULL)
+	{
+		printf("%d ", temp->data);
+		temp = temp->next;
+	}
+}
+
+
+
+// Driver program to test above functions
+int main()
+{
+	int T;
+	cin >> T;
+
+	while (T--)
+	{
+		int N, m, n;
+		cin >> N>>m>>n;
+
+		Node *head = NULL;
+		Node *temp = head;
+
+		for (int i = 0; i < N; i++) {
+			int data;
+			cin >> data;
+			if (head == NULL)
+				head = temp = new Node(data);
+			else
+			{
+				temp->next = new Node(data);
+				temp = temp->next;
+			}
+		}
+
+		
+
+        Solution ob;
+
+		Node* newhead = ob.reverseBetween(head, m, n);
+		printList(newhead);
+
+		cout << "\n";
+
+
+
+	}
+	return 0;
+}
+  // } Driver Code Ends
+```
