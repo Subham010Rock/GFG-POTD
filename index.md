@@ -1185,3 +1185,386 @@ int main() {
     return 0;
 }  // } Driver Code Ends
 ```
+
+## Problem No. 26-[Shortest Path between Cities](https://practice.geeksforgeeks.org/problems/shortest-path-between-cities/1#)
+Geek lives in a special city where houses are arranged in a hierarchial manner. Starting from house number 1, each house leads to two more houses.<br/>
+1 leads to 2 and 3. <br/>
+2 leads to 4 and 5. <br/>
+3 leads to 6 and 7. and so on. <br/>
+Given the house numbers on two houses x and y, find the length of the shortest path between them. 
+
+Solution-
+```
+#User function Template for python3
+
+class Solution:
+    def shortestPath(self, x, y): 
+        # code here
+        d={}
+        if(x==y):
+            return 0
+        m=max(x,y)
+        n=min(x,y)
+        c=0
+        while(m!=1):
+            c+=1
+            m=m//2
+            d[m]=c
+        r=0
+        while(1):
+            if n in d:
+                return r+d[n]
+            else:
+                n=n//2
+                r+=1
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int(input())
+    for _ in range(t):
+        x,y = map(int,input().strip().split())
+        ob = Solution()
+        print(ob.shortestPath(x,y))
+# } Driver Code Ends
+```
+## Problem No. 27-[Nearly sorted](https://practice.geeksforgeeks.org/problems/nearly-sorted-1587115620/1)
+Given an array of n elements, where each element is at most k away from its target position, you need to sort the array optimally.
+
+Solution--
+```
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution
+{
+    public:
+    //Function to return the sorted array.
+    vector <int> nearlySorted(int arr[], int num, int K){
+        // Your code here
+        priority_queue<int,vector<int>,greater<int>>p;
+        for(int i=0;i<num;i++){
+           p.push(arr[i]);
+        }
+        vector<int>res;
+        for(int i=0;i<num;i++){
+        res.push_back(p.top());
+        p.pop();}
+        
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+
+int main()
+ {
+	int T;
+	cin>> T;
+	
+	while (T--)
+	{
+	    int num, K;
+	    cin>>num>>K;
+	    
+	    int arr[num];
+	    for(int i = 0; i<num; ++i){
+	        cin>>arr[i];
+	    }
+	    Solution ob;
+	    vector <int> res = ob.nearlySorted(arr, num, K);
+	    for (int i = 0; i < res.size (); i++)
+	        cout << res[i] << " ";
+	        
+	    cout<<endl;
+	}
+	
+	return 0;
+}
+  // } Driver Code Ends
+ ```
+
+## Problem No. 28-[Help a Thief!!!](https://practice.geeksforgeeks.org/problems/help-a-thief5938/1#)
+You have to help a thief to steal as many as GoldCoins as possible from a GoldMine. There he saw N Gold Boxes an each Gold Boxes consists of Ai Plates each plates consists of Bi Gold Coins. Your task is to print the maximum gold coins theif can steal if he can take a maximum of T plates.
+
+Solution--
+```
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution {
+  public:
+    int maxCoins(int A[], int B[], int T, int N) {
+        // code here
+        vector<pair<int,int>>B_A;
+        for(int i=0;i<N;i++){
+            B_A.push_back(make_pair(B[i],A[i]));
+        }
+        sort(B_A.rbegin(),B_A.rend());
+        int res=0;
+        for(int i=0;i<N;i++){
+            if(T>=B_A[i].second){
+                res+=B_A[i].first*B_A[i].second;
+                T-=B_A[i].second;
+            }
+            else{
+                res+=T*B_A[i].first;
+                break;
+            }
+        }
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int T,N;
+        cin>>T>>N;
+        
+        int A[N], B[N];
+        
+        for(int i=0; i<N; i++)
+            cin>>A[i];
+        for(int i=0; i<N; i++)
+            cin>>B[i];
+
+        Solution ob;
+        cout << ob.maxCoins(A,B,T,N) << endl;
+    }
+    return 0;
+}  // } Driver Code Ends
+```
+
+## Problem No.29-[String formation from substring](https://practice.geeksforgeeks.org/problems/string-formation-from-substring2734/1#)
+Given a string s, the task is to check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
+
+Solution-
+```
+#User function Template for python3
+class Solution:
+    def isRepeat(self, s):
+        # code here
+        n=len(s)
+        for ind in range(n-1):
+            if s[0:ind+1]*(n//(ind+1))==s:
+                return 1
+        return 0
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+    T=int(input())
+    for i in range(T):
+        s = input()
+        
+        ob = Solution()    
+        answer = ob.isRepeat(s)
+        
+        print(answer)
+
+
+# } Driver Code Ends
+```
+
+## Problem No.30- [Ishaan Loves Chocolates](https://practice.geeksforgeeks.org/problems/ishaan-loves-chocolates2156/1)
+As we know, Ishaan has a love for chocolates. He has bought a huge chocolate bar that contains N chocolate squares. Each of the squares has a tastiness level which is denoted by an array A[].<br/>
+Ishaan can eat the first or the last square of the chocolate at once. Ishaan has a sister who loves chocolates too and she demands the last chocolate square. Now, Ishaan being greedy eats the more tasty square first.<br/>
+Determine the tastiness level of the square which his sister gets.
+
+Solution--
+```
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int chocolates(int arr[], int n);
+
+
+int main()
+{
+    
+    int t;cin>> t;
+    while(t--)
+    {
+        int n;
+        cin >> n;
+        int arr[n];
+        
+        for(int i=0;i<n;i++)
+            cin>>arr[i];
+        
+        
+        cout << chocolates(arr, n);
+        cout << endl;
+        
+    }
+
+}
+// } Driver Code Ends
+
+
+int chocolates(int arr[], int n)
+{
+    // Complete the function
+    //return *min_element(arr,arr+n);
+    int i=0;
+    int j=n-1;
+    while(i<j){
+        if(arr[i]>arr[j])
+        i++;
+        else
+        j--;
+    }
+    return arr[i];
+    
+}
+```
+
+## Problem No.31- [Reverse a sublist of a linked list](https://practice.geeksforgeeks.org/problems/reverse-a-sublist-of-a-linked-list/1#)
+Given a linked list and positions m and n. Reverse the linked list from position m to n.
+
+Solution--
+```
+// { Driver Code Starts
+//Initial Template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+/* Link list node */
+struct Node {
+	int data;
+	struct Node *next;
+	Node(int x) {
+		data = x;
+		next = NULL;
+	}
+};
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+/*Link list node 
+struct Node {
+	int data;
+	struct Node *next;
+	Node(int x) {
+		data = x;
+		next = NULL;
+	}
+};*/
+
+class Solution
+{
+    public:
+    Node* reverse(Node* start,Node* end,Node*back){       //Reverse Sublist
+        if(start==end)
+        return start;
+        Node* temp=reverse(start->next,end,back);
+        start->next->next=start;
+        start->next=back;
+        return temp;
+    }
+    Node* reverseBetween(Node* head, int m, int n)
+    {
+        //code here
+        if(m==n)
+        return head;
+        Node* start,*end,*iter=head,*front=NULL,*back=NULL;
+        int c=1;
+        while(c!=n){
+            if(c==m)
+            start=iter;
+            if(c<m)
+            front=iter;
+            c++;
+            iter=iter->next;
+        }
+        end=iter;
+        if(end!=NULL)
+        back=end->next;
+        Node*reverse_head=reverse(start,end,back);
+        if(front!=NULL)
+        front->next=reverse_head;
+        else
+        head=reverse_head;
+        return head;
+        
+    }
+};
+
+// { Driver Code Starts.
+
+/* Function to print linked list */
+void printList(struct Node *head)
+{
+	struct Node *temp = head;
+	while (temp != NULL)
+	{
+		printf("%d ", temp->data);
+		temp = temp->next;
+	}
+}
+
+
+
+// Driver program to test above functions
+int main()
+{
+	int T;
+	cin >> T;
+
+	while (T--)
+	{
+		int N, m, n;
+		cin >> N>>m>>n;
+
+		Node *head = NULL;
+		Node *temp = head;
+
+		for (int i = 0; i < N; i++) {
+			int data;
+			cin >> data;
+			if (head == NULL)
+				head = temp = new Node(data);
+			else
+			{
+				temp->next = new Node(data);
+				temp = temp->next;
+			}
+		}
+
+		
+
+        Solution ob;
+
+		Node* newhead = ob.reverseBetween(head, m, n);
+		printList(newhead);
+
+		cout << "\n";
+
+
+
+	}
+	return 0;
+}
+  // } Driver Code Ends
+```
