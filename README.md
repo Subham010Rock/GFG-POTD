@@ -1568,3 +1568,30 @@ int main()
 }
   // } Driver Code Ends
 ```
+## Problem No. 32-[Left View of Binary Tree](https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1#)
+Given a Binary Tree, print Left view of it. Left view of a Binary Tree is set of nodes visible when tree is visited from Left side. The task is to complete the function leftView(), which accepts root of the tree as argument.
+
+Left view of following tree is 1 2 4 8.
+![image](https://user-images.githubusercontent.com/54362906/175775217-47fcd606-0f3b-490f-85af-36ea6591e3f6.png)
+
+     
+Solution--
+
+```
+//Function to return a list containing elements of left view of the binary tree.
+void preorder(Node* root,int l,vector<int>&res){
+    if(!root)
+    return;
+    if(res.size()==l)
+    res.push_back(root->data);
+    preorder(root->left,l+1,res);
+    preorder(root->right,l+1,res);
+}
+vector<int> leftView(Node *root)
+{
+   // Your code here
+   vector<int>res;
+   preorder(root,0,res);
+   return res;
+}
+```
