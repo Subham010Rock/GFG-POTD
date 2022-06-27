@@ -1568,3 +1568,101 @@ int main()
 }
   // } Driver Code Ends
 ```
+## Problem No. 32-[Left View of Binary Tree](https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1#)
+Given a Binary Tree, print Left view of it. Left view of a Binary Tree is set of nodes visible when tree is visited from Left side. The task is to complete the function leftView(), which accepts root of the tree as argument.
+
+Left view of following tree is 1 2 4 8.
+![image](https://user-images.githubusercontent.com/54362906/175775217-47fcd606-0f3b-490f-85af-36ea6591e3f6.png)
+
+     
+Solution--
+
+```
+//Function to return a list containing elements of left view of the binary tree.
+void preorder(Node* root,int l,vector<int>&res){
+    if(!root)
+    return;
+    if(res.size()==l)
+    res.push_back(root->data);
+    preorder(root->left,l+1,res);
+    preorder(root->right,l+1,res);
+}
+vector<int> leftView(Node *root)
+{
+   // Your code here
+   vector<int>res;
+   preorder(root,0,res);
+   return res;
+}
+```
+## Problem No. 33-[Change Bits](https://practice.geeksforgeeks.org/problems/change-bits1538/1#)
+Given a number N, complete the following tasks,<br/>
+Task 1. Generate a new number from N by changing the zeroes in the binary representation of N to 1.<br/>
+Task  2. Find the difference between N and the newly generated number.
+
+Solution--
+```
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution {
+  public:
+    vector<int> changeBits(int N) {
+        // code here
+       int a=ceil(log2(N));
+       int b=floor(log2(N));
+       int n= a==b ? a+1:a;
+       vector<int>v(2,0);
+       v[1]=pow(2,n)-1;
+       v[0]=v[1]-N;
+       return v;
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        cin>>N;
+        Solution ob;
+        auto ans = ob.changeBits(N);
+        cout<<ans[0]<<" "<<ans[1]<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends
+```
+## Problem No. 34-[Inorder Traversal (Iterative)](https://practice.geeksforgeeks.org/problems/inorder-traversal-iterative/1#)
+Given a binary tree. Find the inorder traversal of the tree without using recursion.
+
+Solution--
+```
+class Solution {
+public:
+    vector<int> inOrder(Node* root)
+    {
+        //code here
+        vector<int>res;
+        stack<Node*>s;
+        Node* r=root;
+        while(!s.empty() or r!=NULL){
+            if(r!=NULL){
+                s.push(r);
+                r=r->left;
+            }
+            else{
+                res.push_back(s.top()->data);
+                r=s.top()->right;
+                s.pop();
+            }
+        }
+        return res;
+    }
+};
