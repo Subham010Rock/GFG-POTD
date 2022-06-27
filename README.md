@@ -1595,3 +1595,47 @@ vector<int> leftView(Node *root)
    return res;
 }
 ```
+## Problem No. 33-[Change Bits](https://practice.geeksforgeeks.org/problems/change-bits1538/1#)
+Given a number N, complete the following tasks,<br/>
+Task 1. Generate a new number from N by changing the zeroes in the binary representation of N to 1.<br/>
+Task  2. Find the difference between N and the newly generated number.
+
+Solution--
+```
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution {
+  public:
+    vector<int> changeBits(int N) {
+        // code here
+       int a=ceil(log2(N));
+       int b=floor(log2(N));
+       int n= a==b ? a+1:a;
+       vector<int>v(2,0);
+       v[1]=pow(2,n)-1;
+       v[0]=v[1]-N;
+       return v;
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        cin>>N;
+        Solution ob;
+        auto ans = ob.changeBits(N);
+        cout<<ans[0]<<" "<<ans[1]<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends
+```
