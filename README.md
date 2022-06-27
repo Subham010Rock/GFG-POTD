@@ -1,4 +1,4 @@
-# GFG-POTD
+# [GFG-POTD](https://subham010rock.github.io/GFG-POTD/)
 
 ## Problem No. 1- [K-Ary Tree](https://practice.geeksforgeeks.org/problems/k-ary-tree1235/1)
 Find the number of leaf nodes in a full k-ary tree of height m.<br />
