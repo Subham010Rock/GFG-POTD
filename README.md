@@ -1639,3 +1639,30 @@ int main() {
     return 0;
 }  // } Driver Code Ends
 ```
+## Problem No. 34-[Inorder Traversal (Iterative)](https://practice.geeksforgeeks.org/problems/inorder-traversal-iterative/1#)
+Given a binary tree. Find the inorder traversal of the tree without using recursion.
+
+Solution--
+```
+class Solution {
+public:
+    vector<int> inOrder(Node* root)
+    {
+        //code here
+        vector<int>res;
+        stack<Node*>s;
+        Node* r=root;
+        while(!s.empty() or r!=NULL){
+            if(r!=NULL){
+                s.push(r);
+                r=r->left;
+            }
+            else{
+                res.push_back(s.top()->data);
+                r=s.top()->right;
+                s.pop();
+            }
+        }
+        return res;
+    }
+};
