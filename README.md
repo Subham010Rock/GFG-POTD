@@ -1715,3 +1715,39 @@ int main()
 }
   // } Driver Code Ends
   ```
+## Problem No. 36-[Reaching the heights](https://practice.geeksforgeeks.org/problems/reaching-the-heights1921/1)
+The teacher gives a mental ability question to Raju. The question is as follows:-<br/>
+
+Raju is in an elevator. Given by his teacher is an array of size N which denotes the number of floors and has a 1 based indexing. The elevator starts from the ground and moves up and down, X and Y floors respectively. There is a code used in the elevator according to which it moves up X floors given at odd indexes of the array and moves down Y floors given at even indexes of the array. He is asked to go to the highest floor possible. Help him to sort the array such that he reaches the highest floor after traversing the whole array from starting till the end, without skipping any index.<br/>
+
+He always prefers to move more number of floors up and less number of floors down. Once he gets into the elevator, the elevator should not reach the ground again, if it does return -1.
+
+Solution--
+```
+vector<int> reaching_height(int n, int a[]) {
+    // Complete the function
+    sort(a,a+n,greater<int>());
+    int e=0;
+    int o=n-1;
+    vector<int>res;
+    int sum=0;
+    for(int i=0;i<n;i++){
+        if(i%2==0){
+        res.push_back(a[e]);
+        sum+=a[e];
+            e+=1;
+        }
+        else{
+            res.push_back(a[o]);
+            sum-=a[o];
+            o-=1;
+        }
+        
+    }
+    if(sum>0)
+    return res;
+    else
+    return {-1};
+    
+}
+```
