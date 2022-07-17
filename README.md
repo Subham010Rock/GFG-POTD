@@ -1781,3 +1781,29 @@ class Solution{
     }
 };
 ```
+## Problem No. 38-[Ceil in BST](https://practice.geeksforgeeks.org/problems/implementing-ceil-in-bst/1)
+Given a BST and a number X, find Ceil of X.<br/>
+Note: Ceil(X) is a number that is either equal to X or is immediately greater than X.
+
+Solution--
+```
+// Function to return the ceil of given number in BST.
+vector<int>v;
+int findCeil(Node* root, int input) {
+    if (root == NULL){
+        if(v.empty())
+        return -1;
+        else
+        return v[v.size()-1];
+    }
+    // Your code here
+    if(root->data==input)
+    return input;
+    else if(root->data > input){
+        v.push_back(root->data);
+      findCeil(root->left,input);  
+    }
+    else
+    findCeil(root->right,input);
+}
+```
