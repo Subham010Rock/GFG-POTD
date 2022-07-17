@@ -1667,3 +1667,143 @@ public:
     }
 };
 ```
+## Problem No. 35-[Sum of elements between k1'th and k2'th smallest elements](https://practice.geeksforgeeks.org/problems/sum-of-elements-between-k1th-and-k2th-smallest-elements3133/1)
+Given an array A[] of N positive integers and two positive integers K1 and K2. Find the sum of all elements between K1th and K2th smallest elements of the array. It may be assumed that (1 <= k1 < k2 <= n).
+
+Solution--
+```
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+class Solution{
+    public:
+    long long sumBetweenTwoKth( long long A[], long long N, long long K1, long long K2)
+    {
+        // Your code goes here
+        sort(A,A+N);
+        long long s=0;
+        while(K1<K2-1){
+            s+=A[K1];
+            K1++;
+        }
+        return s;
+    }
+};
+
+// { Driver Code Starts.
+int main()
+ {
+    long long t;
+    cin>>t;
+    while(t--)
+    {
+        long long n, k;
+        cin>>n;
+        long long a[n+5];
+        for(int i =0;i<n;i++)
+            cin >> a[i];
+        
+        long long k1, k2;
+        cin >> k1 >> k2;
+        Solution ob;
+        cout << ob.sumBetweenTwoKth(a, n, k1, k2) << endl;
+        
+    }
+	return 0;
+}
+  // } Driver Code Ends
+  ```
+## Problem No. 36-[Reaching the heights](https://practice.geeksforgeeks.org/problems/reaching-the-heights1921/1)
+The teacher gives a mental ability question to Raju. The question is as follows:-<br/>
+
+Raju is in an elevator. Given by his teacher is an array of size N which denotes the number of floors and has a 1 based indexing. The elevator starts from the ground and moves up and down, X and Y floors respectively. There is a code used in the elevator according to which it moves up X floors given at odd indexes of the array and moves down Y floors given at even indexes of the array. He is asked to go to the highest floor possible. Help him to sort the array such that he reaches the highest floor after traversing the whole array from starting till the end, without skipping any index.<br/>
+
+He always prefers to move more number of floors up and less number of floors down. Once he gets into the elevator, the elevator should not reach the ground again, if it does return -1.
+
+Solution--
+```
+vector<int> reaching_height(int n, int a[]) {
+    // Complete the function
+    sort(a,a+n,greater<int>());
+    int e=0;
+    int o=n-1;
+    vector<int>res;
+    int sum=0;
+    for(int i=0;i<n;i++){
+        if(i%2==0){
+        res.push_back(a[e]);
+        sum+=a[e];
+            e+=1;
+        }
+        else{
+            res.push_back(a[o]);
+            sum-=a[o];
+            o-=1;
+        }
+        
+    }
+    if(sum>0)
+    return res;
+    else
+    return {-1};
+    
+}
+```
+## Problem No. 37-[Min sum formed by digits](https://practice.geeksforgeeks.org/problems/min-sum-formed-by-digits3551/1)
+Given an array of digits (values are from 0 to 9), find the minimum possible sum of two numbers formed from digits of the array. All digits of given array must be used to form the two numbers.
+
+Solution--
+```
+class Solution{
+    public:
+    long long int minSum(int arr[], int n)
+    {
+        // Your code goes here
+        sort(arr,arr+n,greater<int>());
+        int carry=0;
+        string res="";
+        long long int s,i;
+        for(i=0;i<n-1;i+=2){
+            s=arr[i]+arr[i+1]+carry;
+            res+=to_string(s%10);
+            carry=s/10;
+        }
+        if(i<n){
+            res+=to_string((arr[i]+carry)%10);
+            carry=(arr[i]+carry)/10;
+        }
+        res+=to_string(carry);
+        reverse(res.begin(),res.end());
+        return stoll(res);
+        
+    }
+};
+```
+## Problem No. 38-[Ceil in BST](https://practice.geeksforgeeks.org/problems/implementing-ceil-in-bst/1)
+Given a BST and a number X, find Ceil of X.<br/>
+Note: Ceil(X) is a number that is either equal to X or is immediately greater than X.
+
+Solution--
+```
+// Function to return the ceil of given number in BST.
+vector<int>v;
+int findCeil(Node* root, int input) {
+    if (root == NULL){
+        if(v.empty())
+        return -1;
+        else
+        return v[v.size()-1];
+    }
+    // Your code here
+    if(root->data==input)
+    return input;
+    else if(root->data > input){
+        v.push_back(root->data);
+      findCeil(root->left,input);  
+    }
+    else
+    findCeil(root->right,input);
+}
+```
