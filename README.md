@@ -1751,3 +1751,33 @@ vector<int> reaching_height(int n, int a[]) {
     
 }
 ```
+## Problem No. 37-[Min sum formed by digits](https://practice.geeksforgeeks.org/problems/min-sum-formed-by-digits3551/1)
+Given an array of digits (values are from 0 to 9), find the minimum possible sum of two numbers formed from digits of the array. All digits of given array must be used to form the two numbers.
+
+Solution--
+```
+class Solution{
+    public:
+    long long int minSum(int arr[], int n)
+    {
+        // Your code goes here
+        sort(arr,arr+n,greater<int>());
+        int carry=0;
+        string res="";
+        long long int s,i;
+        for(i=0;i<n-1;i+=2){
+            s=arr[i]+arr[i+1]+carry;
+            res+=to_string(s%10);
+            carry=s/10;
+        }
+        if(i<n){
+            res+=to_string((arr[i]+carry)%10);
+            carry=(arr[i]+carry)/10;
+        }
+        res+=to_string(carry);
+        reverse(res.begin(),res.end());
+        return stoll(res);
+        
+    }
+};
+```
