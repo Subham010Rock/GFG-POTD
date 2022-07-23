@@ -1875,4 +1875,46 @@ int main() {
 }
 // } Driver Code Ends
 ```
-## Problem N0
+## Problem No. 40-[Levels Of Game](https://practice.geeksforgeeks.org/problems/levels-of-game/1)
+You are playing a game. At each level of the game, you have to choose one of the roads to go to the next level. Initially, you have h amount of health and m amount of money.<br/>If you take the first road then your health increases by 3 and money increase by 2. If you take the second road then your health decreases by 5 and money decrease by 10. If you take the third road then health decreases by 20 and money increase by 5.<br/>You have to tell what is the maximum level you can reach up to under the constraints that in no two consecutive levels you can select the same road twice and once your health or money becomes <= 0 game ends(that level is not counted).
+
+Solution--
+```
+class Solution{
+    public:
+        int maxLevel(int h,int m)
+        {
+            // code here
+            int flag=1;
+            int res=0;
+            while(h>0 and m>0){
+                if(flag==1)
+                {
+                    res++;
+                    h+=3;
+                    m+=2;
+                    flag=0;
+                }
+                else{
+                    flag=1;
+                    if(h>5 and m>10){
+                        res++;
+                        h-=5;
+                        m-=10;
+                    }
+                    else{
+                        if(h>20){
+                         res++;
+                        }
+                        h-=20;
+                        m+=5;
+                        
+                    }
+                }
+            }
+            return res;
+        }
+};
+```
+
+
